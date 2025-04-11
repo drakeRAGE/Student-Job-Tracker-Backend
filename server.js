@@ -1,7 +1,10 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-require('dotenv').config();
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import jobRoutes from './routes/jobRoutes.js';
+
+dotenv.config();
 
 const app = express();
 
@@ -14,8 +17,8 @@ mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('MongoDB connection error:', err));
 
-// Routes will be imported here
-app.use('/api/jobs', require('./routes/jobRoutes'));
+// Update the route path to match your frontend request
+app.use('/jobs', jobRoutes);  // Changed from '/api/jobs' to '/jobs'
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

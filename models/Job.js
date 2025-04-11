@@ -1,36 +1,26 @@
 const mongoose = require('mongoose');
 
 const jobSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true
-  },
   company: {
     type: String,
     required: true
   },
-  location: {
+  role: {
     type: String,
     required: true
-  },
-  description: {
-    type: String,
-    required: true
-  },
-  requirements: [{
-    type: String
-  }],
-  salary: {
-    type: Number
   },
   status: {
     type: String,
-    enum: ['Applied', 'Interview', 'Rejected', 'Accepted'],
+    enum: ['Applied', 'Interview', 'Offer', 'Rejected'],
     default: 'Applied'
   },
   applicationDate: {
     type: Date,
     default: Date.now
+  },
+  link: {
+    type: String,
+    required: true
   }
 }, {
   timestamps: true
